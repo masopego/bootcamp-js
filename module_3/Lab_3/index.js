@@ -34,6 +34,27 @@ console.log("IVA Hotel", getVat(hotel));
 console.log("IVA Fruta", getVat(fruit));
 console.log("IVA Diccionario", getVat(dictionary));
 
+// Calculate Total IVA
+
+function getTotalVat(product) {
+  return product.count > 0 ? product.count * getVat(product) : 0;
+}
+
+console.log("IVA Total", getTotalVat(hotel));
+
+// Show IVA in console
+function printProductPrice(product) {
+  const subtotal = getTotal(product);
+  const vat = getTotalVat(product);
+  const total = subtotal + vat;
+
+  console.log("Subtotal:", subtotal + "€");
+  console.log("IVA:", vat + "€");
+  console.log("Total:", total + "€");
+}
+
+printProductPrice(hotel);
+
 // Calculate net salary
 
 const employee = {
@@ -53,7 +74,7 @@ const reduction = 2;
 function calculateNetSalary(employee) {
   let retention;
 
-  // Menos de 12.000€
+  // Less than 12.000€
   if (employee.raw < rangues.first) {
     retention = 0;
   } else if (employee.raw < rangues.second) {
