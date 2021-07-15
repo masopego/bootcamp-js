@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Reservas</title>
+  </head>
+  <body>
+    <h1>Reserva tu hotel</h1>
+    <form>
+      <label for="type_room">Elige el tipo de habitación</label>
+      <select id="type_room" name="type_room">
+        <option value="standard">Standard</option>
+        <option value="junior">Junior Suite</option>
+        <option value="suite">Suite</option>
+      </select>
+      <label for="spa">¿Quiere SPA?</label>
+      <input type="checkbox" id="spa" style="margin: auto" />
+      <label for="size_room">Ocupación de la habitación</label>
+      <select id="size_room" name="size_room">
+        <option value="single">Individual</option>
+        <option value="double">Doble</option>
+        <option value="triple">Triple</option>
+      </select>
+      <label for="number_of_overnights">Número de noches</label>
+      <input type="number" min="1" id="number_of_overnights"
+      name"number_of_overnights"/>
+      <label for="days_of_parking">Número de noches de parking</label>
+      <input type="number" min="0" id="days_of_parking" name"days_of_parking"/>
+      <input
+        type="submit"
+        value="Calcular coste"
+        id="calculate"
+        class="submit"
+      />
+    </form>
+    <div class="total_price">Total: <span id="total_price"></span></div>
+    <script src="index.js"></script>
+  </body>
+</html>
