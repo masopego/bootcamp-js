@@ -7,18 +7,17 @@ const daysOfParkingInput = document.querySelector("#days_of_parking");
 const calculateButton = document.querySelector("#calculate");
 const showedTotalPrice = document.querySelector("#total_price");
 
-const nightPrice = {
+const NIGHT_PRICE = {
   standard: 100,
   junior: 120,
   suite: 150,
 };
-
-const spaPrice = 20;
-const parkingPrice = 10;
-
-const charge = {
+const SPA_PRICE = 20;
+const PARKING_PRICE = 10;
+const CHARGE = {
   single: 0.75,
   triple: 1.25,
+  double: 1,
 };
 
 const order = {
@@ -31,8 +30,10 @@ const order = {
 
 const numericFields = ["numberOfOvernights", "daysOfParking"];
 const isNumericField = (field) => numericFields.includes(field);
-const onInputChange = (input, value) =>
-  (order[input] = isNumericField(input) ? parseInt(value) : value);
+const onInputChange = (input, value) => {
+  order[input] = isNumericField(input) ? parseInt(value) : value;
+  calculateFinalPrice();
+};
 
 typeRoomInput.addEventListener("change", (e) =>
   onInputChange("typeRoom", e.target.value)
@@ -52,36 +53,26 @@ daysOfParkingInput.addEventListener("change", (e) =>
 
 const includesSpa = (price) => {
   if (order.spa != null) {
-    return (price = price + spaPrice);
+    return price + SPA_PRICE;
   }
 
   return price;
 };
 const includesParking = (price) => {
   if (!isNaN(order.daysOfParking)) {
-    return price + order.daysOfParking * parkingPrice;
+    return price + order.daysOfParking * PARKING_PRICE;
   }
 
   return price;
 };
 
 const getRoomPrice = (price) => {
-  if (order.sizeRoom === "triple") {
-    return price * charge.triple;
-  } else if (order.sizeRoom === "single") {
-    return price * charge.single;
-  }
-
-  return price;
+  return price * CHARGE[order.sizeRoom];
 };
 
 function getRate(order) {
-  if (isNaN(order.numberOfOvernights)) {
-    return (alert("Por favor, introduce un número de noches");
-  }
+  let basePrice = NIGHT_PRICE[order.typeRoom];
 
-  let basePrice = nightPrice[order.typeRoom];
-  debugger;
   basePrice = includesSpa(basePrice);
   basePrice = getRoomPrice(basePrice);
   basePrice = basePrice * order.numberOfOvernights;
@@ -90,7 +81,17 @@ function getRate(order) {
   return basePrice;
 }
 
+const calculateFinalPrice = () => {
+  if (isNaN(order.numberOfOvernights)) {
+    showedTotalPrice.innerHTML =
+      "Sigue completando campos para calcular el precio";
+  } else {
+    const finalPrice = getRate(order);
+    showedTotalPrice.innerHTML = finalPrice + "€";
+  }
+};
+
 calculateButton.addEventListener("click", (ev) => {
   ev.preventDefault();
-  showedTotalPrice.innerHTML = getRate(order);
+  calculateFinalPrice();
 });
