@@ -30,6 +30,16 @@ function convertMessage(input, origin, target) {
   return output;
 }
 
+// function convertMessage(input, origin, target) {
+//   return input
+//     .split("")
+//     .map((letter) => {
+//       const letterIndex = searchIndex(origin, letter);
+//       return letterIndex === -1 ? letter : target[letterIndex];
+//     })
+//     .join("");
+// }
+
 const encrypt = (input) =>
   convertMessage(input, plainAlphabet, encryptedAlphabet);
 
