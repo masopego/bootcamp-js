@@ -23,6 +23,30 @@
       "name": "Ahorro",
       "balance": 8500,
       "lastTransaction": "2019-11-15T08:29:04"
+    },
+    {
+      "iban": "SI15 0078 9530 0430 078",
+      "name": "afsfa",
+      "type": "1",
+      "balance": 0,
+      "lastTransaction": "2021-09-04T08:55:44.009Z",
+      "id": "7wF2MVp"
+    },
+    {
+      "iban": "BE73 2083 0901 1694",
+      "name": "fsafa",
+      "type": "2",
+      "balance": 0,
+      "lastTransaction": "2021-09-04T08:55:49.222Z",
+      "id": "hbHCTKD"
+    },
+    {
+      "iban": "SE27 6643 0686 0970 0464 7752",
+      "name": "fsafa",
+      "type": "1",
+      "balance": 0,
+      "lastTransaction": "2021-09-04T08:56:11.298Z",
+      "id": "dHcN0OP"
     }
   ],
   "movements": [

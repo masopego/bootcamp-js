@@ -1,4 +1,4 @@
-import { isValidLogin } from "./login.services";
+import { isValidLogin } from "./login.api";
 import { formValidation } from "./login.validation";
 import {
   onUpdateField,
